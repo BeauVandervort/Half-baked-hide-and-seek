@@ -18,21 +18,50 @@ let correctGuesses = 0;
 let totalGuesses = 0;
 
 shedButton.addEventListener('click', () => {
+    total++;
+    resethidingPlaces();
     const hidingSpot = Math.floor(Math.random() * 3);
     const answer = hidingPlaces[hidingSpot];
     handleGuess(answer, 'shed');
+    if (hidingSpot === 3) {
+        wins++;
+        shedContainer.classList.add('reveal');
+    } else if (hidingSpot === 1) {
+        treeContainer.classList.add('reveal');
+    } else {
+        boulderContainer.classList.add('reveal');
+    }
+    displayResults();
 });
 
 treeButton.addEventListener('click', () => {
     const hidingSpot = Math.floor(Math.random() * 3);
     const answer = hidingPlaces[hidingSpot];
     handleGuess(answer, 'tree');
+    if (hidingSpot === 1) {
+        wins++;
+        shedContainer.classList.add('reveal');
+    } else if (hidingSpot === 3) {
+        treeContainer.classList.add('reveal');
+    } else {
+        boulderContainer.classList.add('reveal');
+    }
+    displayResults();
 });
 
 boulderButton.addEventListener('click', () => {
     const hidingSpot = Math.floor(Math.random() * 3);
     const answer = hidingPlaces[hidingSpot];
     handleGuess(answer, 'boulder');
+    if (hidingSpot === 2) {
+        wins++;
+        shedContainer.classList.add('reveal');
+    } else if (hidingSpot === 1) {
+        treeContainer.classList.add('reveal');
+    } else {
+        boulderContainer.classList.add('reveal');
+    }
+    displayResults();
 });
 
 function handleGuess(correctSpot, userGuess) {
@@ -42,4 +71,9 @@ function handleGuess(correctSpot, userGuess) {
     // then add the face class to that element so that the face shows up
     // then if the user guess is correct, increment the correct guesses
     // update the DOM to show this change to the user (including the losses, not tracked directly in state)
+}
+function displayResults() {
+    winsEl.textContent = wins;
+    lossesEl.textContent = total - wins;
+    totalEl.textContent = total;
 }
