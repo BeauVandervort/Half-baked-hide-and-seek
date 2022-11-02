@@ -14,8 +14,8 @@ const winsEl = document.getElementById('wins');
 // initialize state
 const hidingPlaces = ['tree', 'shed', 'boulder'];
 
-let correctGuesses = 0;
-let totalGuesses = 0;
+let wins = 0;
+let total = 0;
 
 shedButton.addEventListener('click', () => {
     total++;
